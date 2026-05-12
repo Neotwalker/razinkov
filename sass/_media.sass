@@ -1,0 +1,845 @@
+@use "vars"
+
+/*==========  Desktop First  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1320px)
+	body 
+		font-size: 14px
+	.container
+		max-width: 992px
+	.top
+		width: 40px
+		min-width: 40px
+		height: 40px
+		svg
+			width: 15px
+			height: 15px
+	.button 
+		min-height: 44px
+		font-size: 16px
+		font-weight: 600
+		&-link
+			padding: 25px 40px
+	.socials
+		a
+			img
+				width: 44px
+				height: 44px
+	.h1, h1
+		font-size: 40px
+	.h2, h2
+		font-size: 35px
+	.h3, h3 
+		font-size: 30px
+	.h4, h4 
+		font-size: 25px
+	.h5, h5 
+		font-size: 20px
+	.h6, h6 
+		font-size: 18px
+	ul
+		&:not(ul.list,ul.nav,ul.socials) 
+			li
+				&:before
+					margin-top: 10px
+	.fz 
+		&-24 
+			font-size: 20px
+		&-20 
+			font-size: 18px
+		&-18
+			font-size: 14px
+	.redactor
+		> *
+			&:not(:last-child)
+				margin-bottom: 15px
+	.section 
+		padding-top: 80px
+		
+		&:last-child
+			padding-bottom: 80px
+		&-title 
+			gap: 20px
+			&:not(:last-child)
+				margin-bottom: 40px
+	.home 
+		.section
+			&:first-child
+				margin-top: 81px
+	.header 
+		min-height: 81px
+		z-index: 100
+		&-burger 
+			display: flex
+		&-logo 
+			img
+				max-width: 180px
+		&-block
+			position: fixed
+			top: 81px
+			right: -100%
+			transition: all .5s ease
+			background-color: vars.$white
+			flex-direction: column
+			align-items: flex-start
+			gap: 20px
+			height: calc(100vh - 81px)
+			padding: 60px 50px
+			box-shadow: 0 1px 7px 0 rgba(0,0,0,.15)
+			&.active 
+				right: 0
+		&-nav 
+			flex: 1 1 auto
+			.nav
+				flex-direction: column
+		&-tablet 
+			display: flex
+			align-items: center
+			gap: 20px
+	.main
+		&-hero
+			min-height: 400px
+			padding-bottom: 80px
+			&__wrapper
+				gap: 50px
+				padding-top: 60px
+			&__image 
+				&:not(:last-child)
+					margin-bottom: 25px
+			&__label, &__phone
+				&:not(:last-child)
+					margin-bottom: 35px
+		&-steps 
+			&__item 
+				gap: 25px
+				&:not(:last-child)
+					margin-bottom: 25px
+				.count
+					flex: 1 1 calc(20% - 25px)
+				.text
+					.h6
+						&:not(:last-child)
+							margin-bottom: 10px
+		&-case 
+			.item
+				padding: 30px 20px
+			&__left
+				.item 
+					&-info 
+						span 
+							&:not(:last-child)
+								margin-bottom: 15px
+		&-sources
+			&__wrapper 
+				.item 
+					gap: 30px
+					.image
+						min-width: 70px
+						width: 70px
+						height: 70px
+					.text 
+						.h6
+							margin-bottom: 10px
+		&-forum 
+			&__wrapper 
+				gap: 30px
+				.info 
+					.h2
+						margin-bottom: 40px
+					.icon
+						width: 55px
+						height: 55px
+						min-width: 55px
+					.text 
+						.h6
+							margin-bottom: 15px
+		&-niches
+			&__group 
+				.h4
+					margin-bottom: 20px
+		&-proof
+			&__image
+				&:not(:last-child)
+					margin-bottom: 40px
+		&--faq
+			&__item
+				padding: 0 0 25px
+				&--button 
+					padding-top: 25px
+				&--answer 
+					ul
+						gap: 10px
+	.footer
+		&-block 
+			.title
+				margin-bottom: 25px
+		&-nav 
+			.nav 
+				a
+					font-size: 16px
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px)
+	.container
+		max-width: 768px
+	.h1, h1
+		font-size: 32px
+	.h2, h2
+		font-size: 24px
+	.h3, h3 
+		font-size: 20px
+	.h4, h4, .h5, h5, .h6, h6
+		font-size: 18px
+		font-weight: 600
+	.fz
+		&-24, &-20 
+			font-size: 16px
+			ul 
+				&:not(ul.list,ul.nav,ul.socials)
+					li
+						&::before
+							margin-top: 12px
+		&-18, &-14
+			ul 
+				&:not(ul.list,ul.nav,ul.socials)
+					li
+						&::before
+							margin-top: 9px
+	.flex
+		&-25
+			flex: 1 1 calc(50% - 10px)
+	.section
+		padding-top: 60px
+		&-title
+			gap: 15px
+			&:not(:last-child)
+				margin-bottom: 30px
+	.button
+		&-link
+			padding: 20px
+			.h6
+				font-size: 16px
+	ul
+		&:not(&.list,&.nav,&.socials) 
+			li
+				line-height: 1.5
+	.redactor
+		> *
+			line-height: 1.5
+	.main
+		&-hero
+			min-height: fit-content
+			padding-bottom: 60px
+			&__bg 
+				bottom: 10vh
+				top: -30vh
+			&__wrapper
+				gap: 30px
+				align-items: stretch
+			&__left 
+				justify-content: space-between
+		&-steps
+			&__wrapper 
+				gap: 30px
+			&__left 
+				flex: 1 1 calc(70% - 30px)
+			&__right 
+				flex: 1 1 calc(30% - 30px)
+				img
+					border-radius: 10px
+			&__item
+				gap: 20px
+				.count
+					align-items: flex-start
+					justify-content: flex-end
+					line-height: 1
+					flex: initial
+					transform: translateY(-4px)
+				.text 
+					flex: 1 1 calc(85% - 20px)
+		&-case 
+			&__wrapper 
+				// flex-direction: column
+			&__left 
+				flex: 1 1 calc(45% - 20px)
+				.item
+					&:first-child
+						gap: 15px
+					&-image 
+						border-radius: 10px
+					&-info 
+						.image
+							border-radius: 10px
+						span
+							&:not(:last-child)
+								margin-bottom: 10px
+							&:last-child
+								font-size: 12px
+			&__right 
+				flex: 1 1 calc(55% - 20px)
+			.item 
+				padding: 20px
+				border-radius: 10px
+				.h3, .h5
+					margin-bottom: 15px
+				ul
+					margin-left: 10px
+		&-about 
+			&__wrapper 
+				gap: 30px
+			&__media 
+				border-radius: 10px
+			&__content 
+				.h3
+					margin-bottom: 20px
+				p
+					margin-bottom: 20px
+		&-sources
+			&__wrapper 
+				.item 
+					padding: 25px 30px
+					gap: 20px
+					border-radius: 10px
+					&:last-child 
+						.redactor
+							gap: 20px
+							p, .button
+								max-width: fit-content
+		&-bot
+			&__wrapper
+				gap: 30px
+			&__content 
+				.fz-18
+					margin-bottom: 20px
+		&-forum
+			&__wrapper 
+				.image 
+					felx: 1 1 calc(40% - 30px)
+					img
+						object-fit: contain
+				.info
+					flex: 1 1 calc(60% - 30px)
+					.h2
+						margin-bottom: 20px
+		&-services
+			&__card
+				padding: 30px 20px
+				.h5 
+					&:not(:last-child)
+						margin-bottom: 20px
+				.redactor
+					&:not(:last-child)
+						margin-bottom: 20px
+			&__footer 
+				.button 
+					font-size: 16px
+		&--faq
+			&__item
+				padding: 0 0 20px
+				&--button 
+					padding-top: 20px
+					> span 
+						font-size: 20px
+		&-reviews
+			&__list
+				gap: 15px
+	.footer
+		padding-top: 60px
+		padding-bottom: 40px
+		&-top
+			gap: 30px
+			padding-bottom: 40px
+		&-block 
+			.title
+				margin-bottom: 15px
+			.text
+				font-size: 12px
+		&-nav 
+			.nav 
+				gap: 10px
+				a
+					font-size: 14px
+		&-contacts 
+			.socials 
+				gap: 10px
+				a 
+					img
+						min-width: 25px
+						width: 25px
+						height: 25px
+					span
+						font-size: 12px
+		&-bottom
+			flex-wrap: wrap
+			padding-top: 30px
+			gap: 10px 20px
+			.privacy
+				margin-left: initial
+			.copyright
+				margin-left: auto
+		&-logo 
+			transform: translateY(20px)
+	.top
+		&.scroll
+			right: 26px
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px)
+	form 
+		input, textarea
+			padding: 8px 20px
+			font-size: 14px
+	.container
+		max-width: 600px
+	.section
+		&:last-child
+			padding-bottom: 60px
+	.home 
+		.section
+			&:first-child
+				margin-top: 70px
+	.button
+		font-size: 14px
+		min-height: 34px
+		padding: 8px 28px
+		&-phone, &-telegram, &-whatsapp
+			span
+				font-size: 14px
+		&-link 
+			svg
+				min-width: 20px
+				width: 20px
+				height: 20px
+	.flex
+		&-33, &-50
+			flex: 1 1 100% 
+	.nav
+		gap: 20px
+	.header
+		min-height: 70px
+		&-logo 
+			img
+				max-width: 150px
+		&-tablet
+			> .button
+				display: none
+		&-block 
+			top: 70px
+			padding: 40px 30px
+			min-width: 250px
+			height: calc(100vh - 70px)
+			.button
+				width: 100%
+		&-nav 
+			width: 100%
+		.socials 
+			width: 100%
+			a 
+				img
+					width: 35px
+					height: 35px
+	.main
+		&-hero
+			padding-bottom: 40px
+			&__bg 
+				top: -20%
+				bottom: -10%
+			&__wrapper
+				padding-top: 40px
+				flex-direction: column-reverse
+				gap: 20px
+			&__left 
+				flex-direction: row
+				align-items: center
+				gap: 20px
+			&__image 
+				&:not(:last-child)
+					margin-bottom: 0
+			&__right 
+				.h1
+					&:not(:last-child)
+						margin-bottom: 20px
+					br
+						display: none
+			&__label 
+				&:not(:last-child)
+					margin-bottom: 20px
+			&__subtitle 
+				&:not(:last-child)
+					margin-bottom: 20px
+		&-steps
+			&__right
+				display: none
+			&__item 
+				.count
+					flex: 1 1 calc(20% - 25px)
+					align-items: center
+					justify-content: center
+					font-size: 30px
+		&-case
+			&__wrapper
+				flex-direction: column
+			&__buttons
+				flex-wrap: wrap
+				gap: 15px
+		&-about
+			&__wrapper
+				gap: 20px
+		&-sources
+			&__wrapper 
+				.item 
+					padding: 20px 25px
+					align-items: flex-start
+					.image
+						min-width: 50px
+						width: 50px
+						height: 50px
+					&:last-child
+						.redactor 
+							flex-direction: column
+							align-items: flex-start
+							gap: 15px
+		&-bot
+			&__wrapper
+				flex-direction: column
+				gap: 20px
+			&__list
+				gap: 20px
+				.item
+					gap: 15px
+		&-forum
+			&__wrapper
+				flex-direction: column
+				.image 
+					display: none
+				.info 
+					.item
+						&:not(:last-child)
+							margin-bottom: 20px
+		&-services
+			&__wrapper
+				flex-direction: column
+				gap: 20px
+		&--faq
+			&__wrapper 
+				gap: 15px
+			&__item
+				padding-bottom: 15px
+				padding-top: 15px
+				&--button
+					padding-top: 0
+					padding-left: 20px
+					padding-right: 20px
+					gap: 10px
+					> span
+						font-size: 16px
+						padding-right: 0
+				&--icon 
+					min-width: 20px
+					width: 20px
+					height: 20px
+				&--answer 
+					padding-left: 20px
+					padding-right: 20px
+				&.active 
+					.main--faq__item--answer
+						margin-top: 15px
+		&-reviews
+			&__wrapper 
+				.show-all-reviews
+					.button
+						min-height: 34px
+						height: auto
+						max-width: initial
+						width: initial
+						min-width: 200px
+						span
+							white-space: nowrap
+			&__list
+				grid-template-columns: repeat(3,minmax(0,1fr))
+				grid-template-rows: auto
+				.image 
+					align-self: stretch
+					img
+						width: 100%
+						height: 100%
+	.footer
+		&-top
+			gap: 30px 15px
+			flex-wrap: wrap
+		&-info 
+			flex: 1 1 100%
+			.title 
+				font-size: 20px
+		&-bottom 
+			flex-direction: column
+			align-items: flex-start
+			gap: 20px
+			.copyright
+				margin-left: 0
+		&-logo 
+			transform: none
+		&-block 
+			.text 
+				font-size: 14px
+	.modal
+		&-wrapper 
+			flex-direction: column
+		&-left 
+			display: none
+		&-close
+			min-width: 30px
+			width: 30px
+			height: 30px
+		&-social 
+			.button
+				padding: 8px 28px
+	.cookies
+		left: 0
+		right: 0
+		&--wrapper 
+			width: 100%
+			max-width: 100%
+			border-radius: 0
+		&.active 
+			bottom: 0
+
+@media only screen and (max-width : 600px)
+	.container 
+		max-width: 480px
+	.main
+		&-about
+			&__wrapper
+				flex-direction: column
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px)
+	.container 
+		max-width: 390px
+	.h1, h1
+		font-size: 28px
+	.h2, h2 
+		font-size: 20px
+	.h3, h3
+		font-size: 18px
+	h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6,
+	.fz-24, .fz-20, .fz-18, .fz-14
+		br
+			display: none
+	.fz-20, .fz-18, .fz-14
+		font-size: 14px
+	.button
+		&-link 
+			padding: 20px 15px
+			.h6
+				font-size: 14px
+	.header
+		&-block 
+			min-width: 100vw
+			box-shadow: none
+			.header-nav, .button, .socials
+				max-width: 320px
+				margin: 0 auto
+		&-tablet
+			> .socials
+				display: none
+	.main
+		&-hero
+			&__wrapper 
+				position: relative
+			&__left
+				align-items: flex-start
+				flex-direction: column
+				padding-bottom: 65px
+			&__right 
+				.socials
+					position: absolute
+					bottom: 0
+					left: 0
+			&__image 
+				border-radius: 10px
+				max-width: 80%
+			&__label 
+				font-size: 20px
+				line-height: 1.5
+			&__subtitle 
+				line-height: 1.5
+				&:not(:last-child)
+					margin-bottom: 0
+		&-steps
+			&__item 
+				gap: 10px
+				.count
+					align-items: flex-start
+					justify-content: flex-end
+					flex: initial
+					transform: translateY(-4px)
+				.text
+					line-height: 1.5
+		&-case
+			&__left 
+				.item
+					&:first-child
+						flex-direction: column
+						gap: 20px
+					&:not(:first-child)
+						border-radius: 10px
+			&__buttons 
+				gap: 10px
+		&-about
+			&__content 
+				p
+					line-height: 1.5
+			&__media 
+				margin-left: -20px
+				margin-right: -20px
+				border-radius: 0
+		&-sources
+			&__wrapper 
+				.item
+					padding: 20px 15px
+					gap: 15px
+					.image
+						min-width: 40px
+						width: 40px
+						height: 40px
+					&:last-child
+						flex-direction: column
+		&-bot
+			&__list 
+				.item 
+					.icon
+						min-width: 40px
+						width: 40px
+						height: 40px
+						img
+							min-width: 15px
+							width: 15px
+							height: 15px
+			&__content 
+				.fz-18
+					line-height: 1.5
+		&-forum
+			&__wrapper 
+				.info 
+					.item
+						gap: 15px
+					.icon 
+						min-width: 40px
+						width: 40px
+						height: 40px
+		&-services
+			&__footer
+				gap: 15px
+				flex-wrap: wrap
+		&--faq
+			&__item
+				padding: 15px 0
+				&--button
+					padding-left: 15px
+					padding-right: 15px
+					> span
+						font-size: 15px
+		&-reviews
+			&__list
+				gap: 10px
+				grid-template-columns: repeat(2,minmax(0,1fr))
+				margin-left: -20px
+				margin-right: -20px
+				.image 
+					border-radius: 0
+	.top
+		bottom: 15px
+		width: 35px
+		height: 35px
+		min-width: 35px
+		&.scroll
+			right: 15px
+	.custom
+		&--check
+			+ label 
+				span
+					font-size: 12px
+	.modal
+		padding-left: 10px
+		padding-right: 10px
+		&-right 
+			padding: 40px 20px
+		&-social 
+			.info
+				font-size: 12px
+
+@media only screen and (max-width : 390px)
+	.container
+		max-width: 100%
+	.main
+		&-hero
+			&__right 
+				.h1
+					font-size: 20px
+			&__label 
+				font-size: 18px
+		&-bot
+			&__media
+				margin-left: -20px
+				margin-right: -20px
+				img
+					border-radius: 0
+		&-proof
+			&__image
+				margin-left: -25px
+				margin-right: -20px
+		&-sources
+			&__wrapper
+				.item 
+					position: relative
+					.image 
+						position: absolute
+						top: 20px
+						left: 15px
+					.text 
+						.h6
+							margin-left: 55px
+							min-height: 40px
+							display: flex
+							align-items: center
+					&:last-child
+						.image
+							position: relative
+							top: 0
+							left: 0
+	.footer
+		padding-bottom: 60px
+		&-top
+			flex-direction: column
+			gap: 20px
+		&-block 
+			.title 
+				font-size: 20px
+		&-nav
+			.nav 
+				gap: 15px
+		&-contacts 
+			.socials 
+				a 
+					img
+						min-width: 35px
+						width: 35px
+						height: 35px
+					span
+						font-size: 14px
+
+@media (max-height : 630px)
+	.modal
+		align-items: flex-start
+		padding: 20px 0
+		overflow-x: hidden
+		overflow-y: auto
+
+@media (max-height : 746px)
+	.main
+		&-hero
+			&__bg
+				bottom: -20vh
+				top: -20vh
