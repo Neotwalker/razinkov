@@ -5,23 +5,36 @@ document.addEventListener("DOMContentLoaded", () => {
 	const headerBlock = document.querySelector('.header-block');
 
 	if (burger && headerBlock) {
+
+		// открытие / закрытие бургер-меню
 		burger.addEventListener('click', () => {
 			headerBlock.classList.toggle('active');
 			burger.classList.toggle('open');
 		});
+
+		// закрытие при клике вне menu
+		document.addEventListener('click', (e) => {
+			if (!headerBlock.classList.contains('active')) return;
+
+			const isClickInsideMenu = headerBlock.contains(e.target);
+			const isClickBurger = burger.contains(e.target);
+
+			if (!isClickInsideMenu && !isClickBurger) {
+				headerBlock.classList.remove('active');
+				burger.classList.remove('open');
+			}
+		});
+
+		// закрытие при клике на якорную ссылку
+		const anchorLinks = headerBlock.querySelectorAll('a[href^="#"]');
+
+		anchorLinks.forEach(link => {
+			link.addEventListener('click', () => {
+				headerBlock.classList.remove('active');
+				burger.classList.remove('open');
+			});
+		});
 	}
-	// закрытие при клике вне header-block
-	document.addEventListener('click', (e) => {
-		if (!headerBlock.classList.contains('active')) return;
-
-		const isClickInsideMenu = headerBlock.contains(e.target);
-		const isClickBurger = burger.contains(e.target);
-
-		if (!isClickInsideMenu && !isClickBurger) {
-			headerBlock.classList.remove('active');
-			burger.classList.remove('open');
-		}
-	});
 
 	
 	if (window.innerWidth > 768) {

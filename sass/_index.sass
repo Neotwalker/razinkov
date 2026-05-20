@@ -379,11 +379,11 @@ main
 	&-100
 		flex: 100%
 	&-50
-		flex: 1 1 calc(50% - 10px)
+		flex: 1 1 calc(50% - 20px)
 	&-33 
-		flex: 1 1 calc(33.333% - 10px)
+		flex: 1 1 calc(33.333% - 20px)
 	&-25 
-		flex: 1 1 calc(25% - 10px)
+		flex: 1 1 calc(25% - 20px)
 
 .phone 
 	text-decoration: none
@@ -513,18 +513,19 @@ main
 		padding-bottom: 120px
 		&__bg 
 			position: absolute
-			top: -20vh
-			bottom: -20vh
+			top: -10vh
+			bottom: -10vh
 			left: 0
 			right: 0
 			z-index: 0
 			overflow: hidden
 			will-change: transform
 			pointer-events: none
-			img, picture 
+			img, picture, video 
 				width: 100%
 				height: 100%
 				display: block
+				object-fit: cover
 			&::before
 				content: ''
 				display: block
@@ -532,7 +533,9 @@ main
 				z-index: 1
 				width: 100%
 				height: 100%
-				background-image: linear-gradient(90deg, rgba(157, 102, 151, 0.5) 0%, rgba(0, 149, 190, 0.5) 100%)
+				// background-image: linear-gradient(90deg, rgba(157, 102, 151, 0.5) 0%, rgba(0, 149, 190, 0.5) 100%)
+				background: linear-gradient( to right, rgba(32, 20, 60, 0.75), rgba(0, 64, 140, 0.45))
+				// backdrop-filter: blur(1px)
 		&__wrapper
 			position: relative
 			z-index: 1
@@ -542,6 +545,7 @@ main
 			align-items: center
 			gap: 100px
 			padding-top: 100px
+			max-width: 50%
 		&__left 
 			display: flex
 			flex-direction: column
@@ -868,14 +872,14 @@ main
 			flex-direction: column
 			gap: 60px
 		&__group 
-			.h4
+			.h4, .h3
 				margin-bottom: 30px
 			.list 
 				display: flex
 				flex-wrap: wrap
 				gap: 10px
 		&__block 
-			.h4
+			.h4, .h3
 				&:not(:last-child)
 					margin-bottom: 30px
 			.list
@@ -888,15 +892,16 @@ main
 				align-items: flex-start
 				justify-content: flex-start
 				flex-direction: column
-				padding: 30px 16px 30px 16px
-				flex: 1 1 calc(33.3333% - 30px)
+				padding: 30px 16px 20px 16px
 				gap: 10px
 				min-height: 195px
 				overflow: hidden
 				.h6, .title, .fz-14
-					max-width: calc(100% - 130px)
+					max-width: calc(100% - 160px)
 					color: vars.$black
 					transition: color .3s ease
+					position: relative
+					z-index: 1
 					&:hover 
 						color: vars.$accent
 				.h6, .title
@@ -904,6 +909,7 @@ main
 				.icon 
 					width: 30px
 					height: 30px
+					margin-top: auto
 					path 
 						transform: fill .5s ease
 				.image
@@ -912,6 +918,7 @@ main
 					position: absolute
 					bottom: 0
 					right: 0
+					z-index: 0
 					img
 						width: 100%
 						transition: transform .5s ease
@@ -921,6 +928,9 @@ main
 					.image 
 						img 
 							transform: scale(1.05)
+				&.no-image 
+					.h6, .title, .fz-14
+						max-width: 100%
 	&-services 
 		&__wrapper 
 			display: flex
