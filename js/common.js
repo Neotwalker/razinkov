@@ -1,5 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+	const video = document.querySelector('.hero-video');
+
+	if (video) {
+
+		const source = document.createElement('source');
+		const isMobile = window.matchMedia('(max-width: 768px)').matches;
+	
+		source.src = isMobile ? video.dataset.srcMobile : video.dataset.srcDesktop;
+		source.type = 'video/mp4';
+	
+		video.appendChild(source);
+	
+		window.addEventListener('load', function () {
+			video.load();
+	
+			video.play().catch(function () {
+				// Если браузер не дал autoplay — ничего страшного, останется poster
+			});
+		});
+
+	}
+
+
 	// header burger
 	const burger = document.querySelector('.header-burger');
 	const headerBlock = document.querySelector('.header-block');
@@ -94,6 +117,12 @@ document.addEventListener("DOMContentLoaded", () => {
 			},
 		});
 	}
+	Fancybox.bind('[data-fancybox="main-proof-videos"]', {
+		dragToClose: false,
+		iframe: {
+			preload: false
+		}
+	});
 
 	// Smooth Height for FAQ
 	const smoothHeight = (itemSelector, buttonSelector, contentSelector) => {
@@ -304,8 +333,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	const body = document.body;
 	const hasClass = (el, cls) => el && el.classList.contains(cls);
 	const qsa = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
-	const modal = document.querySelector('.modal');
-	const modalSend = document.querySelector('.modal--send');
+
+	const modals = qsa('.modal');
 	const header = document.querySelector('.header');
 	const topButton = document.querySelector('.top');
 
@@ -368,11 +397,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// Убрать скролл при открытии модалок/меню
 	function isAnythingOverlayOpen() {
-		return (
-			hasClass(modal, 'active') ||
-			hasClass(modalSend, 'active')
-		);
+		return document.querySelector('.modal.active') !== null;
 	}
+
 	function lockScroll() {
 		if (!isAnythingOverlayOpen()) return;
 
@@ -388,44 +415,58 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		}
 	}
+
 	function unlockScrollIfFree() {
 		if (isAnythingOverlayOpen()) return;
+
 		docEl.classList.remove('overflow');
+
 		if (header) {
 			header.style.paddingRight = '';
 		}
+
 		body.style.paddingRight = '';
 	}
 
-		// ---------- MODALS ----------
+	// ---------- MODALS ----------
+	function closeAllModals() {
+		qsa('.modal.active').forEach(modalItem => {
+			modalItem.classList.remove('active');
+		});
+
+		unlockScrollIfFree();
+	}
+
 	function openModal(selector = '.modal--general') {
 		const target = document.querySelector(selector);
 		if (!target) return;
+
+		closeAllModals();
+
 		target.classList.add('active');
-		// .modal — общий контейнер, если он есть
-		if (modal && !modal.classList.contains('active')) {
-			modal.classList.add('active');
-		}
 		lockScroll();
 	}
+
 	function closeSingleModal(modalItem) {
 		if (!modalItem) return;
 
 		modalItem.classList.remove('active');
 		unlockScrollIfFree();
 	}
-	if (modal || modalSend) {
+
+	if (modals.length) {
 		// Открытие модалок
 		qsa('.modal--open').forEach(button => {
 			button.addEventListener('click', e => {
 				e.preventDefault();
+
 				const targetSelector = button.getAttribute('data-modal-target') || '.modal--general';
 				openModal(targetSelector);
 			});
 		});
 
 		// Закрытие по клику на фон
-		qsa('.modal').forEach(modalItem => {
+		modals.forEach(modalItem => {
 			modalItem.addEventListener('click', e => {
 				if (e.target === modalItem) {
 					closeSingleModal(modalItem);
@@ -445,4 +486,64 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 
+	// ---------- CONTACT FORM 7 RESULT MODALS ----------
+	document.addEventListener('wpcf7mailsent', function () {
+		openModal('.modal--send');
+	}, false);
+
+	document.addEventListener('wpcf7mailfailed', function () {
+		openModal('.modal--error');
+	}, false);
+
+	document.addEventListener('wpcf7spam', function () {
+		openModal('.modal--error');
+	}, false);
+
 });
+
+(function () {
+    const HEADER_OFFSET = 170; // высота фиксированной шапки + запас
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Устанавливаем max-height для всех toc
+        document.querySelectorAll('.toc-wrapper .toc').forEach(toc => {
+            toc.style.maxHeight = toc.scrollHeight + 'px';
+        });
+    });
+
+    document.addEventListener('click', function (e) {
+        // сворачивание/разворачивание
+        const toggleBtn = e.target.closest('.close_content');
+        if (toggleBtn) {
+            const wrapper = toggleBtn.closest('.toc-wrapper');
+            const toc = wrapper && wrapper.querySelector('.toc');
+            if (!toc) return;
+
+            if (toc.classList.contains('hidden')) {
+                toc.classList.remove('hidden');
+                toggleBtn.classList.remove('active');
+                toc.style.maxHeight = toc.scrollHeight + 'px';
+            } else {
+                toc.style.maxHeight = toc.scrollHeight + 'px';
+                setTimeout(() => toc.style.maxHeight = '0px', 10);
+                toc.classList.add('hidden');
+                toggleBtn.classList.add('active');
+            }
+            return;
+        }
+
+        // плавный скролл с отступом
+        const tocLink = e.target.closest('.toc a');
+        if (tocLink && tocLink.hash) {
+            const id = decodeURIComponent(tocLink.hash.slice(1));
+            const target = document.getElementById(id);
+            if (target) {
+                e.preventDefault();
+                const top = target.getBoundingClientRect().top + window.pageYOffset - HEADER_OFFSET;
+                window.history.pushState(null, '', '#' + id);
+                window.scrollTo({ top, behavior: 'smooth' });
+            }
+        }
+    });
+
+})();
